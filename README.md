@@ -5,16 +5,18 @@ Bare bones projects for SAM3X (Arduino Due)
 
 ## Requirements
 
-- An arduino Due
+- An Arduino Due
 - USB cable
 - installation of Arduino IDE + SAM boards package (or GNU-ARM compiler package)
 
+Optional : make
+
 ## blink
 
-Not working.
+Working.
 
-NB you will need to alter paths to suit your installation in build.bat.
-Change the COM port for your system.
+NB you will need to alter paths to suit your installation in build.bat/makefile
+Also change the COM port for your system.
 
 ## Programming
 

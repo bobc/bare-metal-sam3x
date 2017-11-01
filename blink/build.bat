@@ -7,8 +7,8 @@ set PROG=%USERPROFILE%\AppData\Local\Arduino15\packages\arduino\tools\bossac\bos
 set CFLAGS=-mcpu=cortex-m3 -mthumb --specs=nosys.specs -nostdlib -g -Os
 
 echo Compiling...
-%cc% -c main.c -o main.o
-%cc% -c startup.c -o startup.o
+%cc% -c main.c -o main.o %CFLAGS%
+%cc% -c startup.c -o startup.o %CFLAGS%
 
 echo Linking...
 %cc% startup.o main.o -o blink.elf -mcpu=cortex-m3 -mthumb --specs=nosys.specs -nostdlib "-Tflash.ld" "-Wl,-Map,blink.map" -nostartfiles

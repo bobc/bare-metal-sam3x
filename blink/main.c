@@ -10,6 +10,12 @@
 
 #include <stdint.h>
 
+// LED on B27 (Arduino Due)
+#define LED_PIN 27
+
+// Output on B14 (Duet)
+//#define LED_PIN 14
+
 // PMC definitions
 #define PMC_PCER0 *(volatile uint32_t *)0x400E0610
 
@@ -98,15 +104,15 @@ struct gpio {
 void HardwareInit (void)
 {
   // enable peripheral clock
-//  PMC_WPMR  = PMC_WPKEY << 8 | 0;
-  PMC_PCER0 = 1 << ID_PIOC;
+	//  PMC_WPMR  = PMC_WPKEY << 8 | 0;
+  PMC_PCER0 = 1 << ID_PIOB;
 
   // PIOC
-//  PIOC_WPMR  = PIO_WPKEY << 8 | 0;
+	//  PIOC_WPMR  = PIO_WPKEY << 8 | 0;
 
-  PIOC->PIO_PER = 1 << 20;
-  PIOC->PIO_OER = 1 << 20;
-  PIOC->PIO_OWER = 1 << 20;
+  PIOB->PIO_PER = 1 << LED_PIN;
+  PIOB->PIO_OER = 1 << LED_PIN;
+  PIOB->PIO_OWER = 1 << LED_PIN;
 }
 
 void delay (volatile uint32_t time)
@@ -121,9 +127,9 @@ void main()
 
   while (1)
   {
-    PIOC->PIO_SODR = 1 << 20;
-    delay (10000);
-    PIOC->PIO_CODR = 1 << 20;
-    delay (10000);
+    PIOB->PIO_SODR = 1 << LED_PIN;
+    delay (100000);
+    PIOB->PIO_CODR = 1 << LED_PIN;
+    delay (100000);
   }
 }
